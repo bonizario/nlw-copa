@@ -1,0 +1,3 @@
+{
+  "extends": ["universe/native", "plugin:prettier/recommended"]
+}
