@@ -1,7 +1,8 @@
 {
-  "name": "mobile",
+  "name": "nlwcopamobile",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "private": true,
+  "author": "bonizario",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -40,6 +41,5 @@
   },
   "overrides": {
     "react": "18.0.0"
-  },
-  "private": true
+  }
 }

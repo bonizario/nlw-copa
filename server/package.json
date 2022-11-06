@@ -1,14 +1,11 @@
 {
-  "name": "server",
+  "name": "nlwcopaserver",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "author": "bonizario",
   "scripts": {
     "dev": "tsx watch src/server.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
@@ -17,11 +14,8 @@
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-config-standard-with-typescript": "^23.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.4.0",
+    "eslint-config-universe": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-promise": "^6.1.1",
     "prettier": "^2.7.1",
     "prisma": "^4.5.0",
     "prisma-erd-generator": "^1.2.2",

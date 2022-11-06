@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { FormEvent, useState } from 'react';
 
+import appPreviewImg from '../assets/app-nlw-copa-preview.png';
+import iconCheckImg from '../assets/icon-check.svg';
 import logoImg from '../assets/logo.svg';
 import usersAvatarExampleImg from '../assets/users-avatar-example.png';
-import iconCheckImg from '../assets/icon-check.svg';
-import appPreviewImg from '../assets/app-nlw-copa-preview.png';
 import { api } from '../lib/axios';
 
 interface HomeProps {
