@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-async function main() {
+async function main(): Promise<void> {
   const user = await prisma.user.create({
     data: {
       name: 'John Doe',
@@ -24,7 +24,7 @@ async function main() {
     },
   });
 
-  let date = new Date();
+  const date = new Date();
   date.setDate(date.getDate() + 1);
   await prisma.game.create({
     data: {
@@ -50,7 +50,7 @@ async function main() {
                 userId: user.id,
                 poolId: pool.id,
               },
-            } ,
+            },
           },
         },
       },
@@ -58,4 +58,4 @@ async function main() {
   });
 }
 
-main()
+main().catch(console.error);

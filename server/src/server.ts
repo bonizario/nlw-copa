@@ -8,7 +8,7 @@ const prisma = new PrismaClient({
   log: ['query'],
 });
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const fastify = Fastify({
     logger: true,
   });
@@ -43,10 +43,10 @@ async function bootstrap() {
         code,
       },
     });
-    return reply.status(201).send({ code });
+    return await reply.status(201).send({ code });
   });
 
   await fastify.listen({ port: 3333, host: '0.0.0.0' });
 }
 
-bootstrap();
+bootstrap().catch(console.error);
