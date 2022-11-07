@@ -3,7 +3,7 @@ import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 import { Participants, ParticipantProps } from './Participants';
 
-export interface PoolPros {
+export interface PollPros {
   id: string;
   code: string;
   title: string;
@@ -19,10 +19,10 @@ export interface PoolPros {
 }
 
 interface Props extends TouchableOpacityProps {
-  data: PoolPros;
+  data: PollPros;
 }
 
-export function PoolCard({ data, ...rest }: Props) {
+export function PollCard({ data, ...rest }: Props) {
   return (
     <TouchableOpacity {...rest}>
       <HStack
