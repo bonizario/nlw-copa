@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import cors from '@fastify/cors';
+import jwt from '@fastify/jwt';
 import Fastify from 'fastify';
 
 import { authRoutes } from './routes/auth';
@@ -11,6 +12,7 @@ import { userRoutes } from './routes/user';
 async function bootstrap(): Promise<void> {
   const fastify = Fastify({ logger: true });
   await fastify.register(cors, { origin: true });
+  await fastify.register(jwt, { secret: process.env.JWT_SECRET });
   await fastify.register(authRoutes);
   await fastify.register(gameRoutes);
   await fastify.register(guessRoutes);
