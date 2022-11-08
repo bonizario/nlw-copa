@@ -6,6 +6,43 @@ import { prisma } from '../lib/prisma';
 import { authenticate } from '../plugins/authenticate';
 
 export async function poolRoutes(fastify: FastifyInstance) {
+  fastify.get('/pools', { onRequest: [authenticate] }, async request => {
+    const pools = await prisma.pool.findMany({
+      where: {
+        participants: {
+          some: {
+            userId: request.user.sub,
+          },
+        },
+      },
+      include: {
+        _count: {
+          select: {
+            participants: true,
+          },
+        },
+        participants: {
+          select: {
+            id: true,
+            user: {
+              select: {
+                avatarUrl: true,
+              },
+            },
+          },
+          take: 4,
+        },
+        owner: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+    return { pools };
+  });
+
   fastify.get('/pools/count', async () => {
     const count = await prisma.pool.count();
     return { count };
@@ -30,7 +67,8 @@ export async function poolRoutes(fastify: FastifyInstance) {
           },
         },
       });
-    } catch {
+    } catch (error) {
+      console.error({ error });
       await prisma.pool.create({
         data: {
           title,
