@@ -11,8 +11,8 @@ export async function pollRoutes(fastify: FastifyInstance) {
   });
 
   fastify.post('/polls', async (request, reply) => {
-    const createPollBody = z.object({ title: z.string() });
-    const { title } = createPollBody.parse(request.body);
+    const createPollSchema = z.object({ title: z.string() });
+    const { title } = createPollSchema.parse(request.body);
     const generate = new ShortUniqueId({ length: 6 });
     const code = String(generate()).toUpperCase();
     await prisma.poll.create({

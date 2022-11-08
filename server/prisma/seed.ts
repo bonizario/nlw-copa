@@ -7,6 +7,7 @@ async function main(): Promise<void> {
     data: {
       name: 'John Doe',
       email: 'john.doe@example.com',
+      googleId: process.env.GOOGLE_ACCESS_TOKEN,
       avatarUrl: 'https://github.com/bonizario.png',
     },
   });
