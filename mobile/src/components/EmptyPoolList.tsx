@@ -1,6 +1,6 @@
 import { Row, Text, Pressable } from 'native-base';
 
-export function EmptyPollList() {
+export function EmptyPoolList() {
   return (
     <Row flexWrap="wrap" justifyContent="center">
       <Text color="white" fontSize="sm" textAlign="center">
