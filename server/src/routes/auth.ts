@@ -10,8 +10,8 @@ export async function authRoutes(fastify: FastifyInstance) {
   });
 
   fastify.post('/users', async request => {
-    const authenticateUserSchema = z.object({ access_token: z.string() });
-    const { access_token: accessToken } = authenticateUserSchema.parse(
+    const authenticateUserBody = z.object({ access_token: z.string() });
+    const { access_token: accessToken } = authenticateUserBody.parse(
       request.body
     );
     const userResponse = await fetch(

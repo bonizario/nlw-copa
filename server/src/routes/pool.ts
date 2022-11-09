@@ -7,8 +7,8 @@ import { authenticate } from '../plugins/authenticate';
 
 export async function poolRoutes(fastify: FastifyInstance) {
   fastify.get('/pools/:id', async request => {
-    const getPoolSchema = z.object({ id: z.string() });
-    const { id } = getPoolSchema.parse(request.params);
+    const getPoolParams = z.object({ id: z.string() });
+    const { id } = getPoolParams.parse(request.params);
     const pool = await prisma.pool.findUnique({
       where: {
         id,
@@ -84,8 +84,8 @@ export async function poolRoutes(fastify: FastifyInstance) {
   });
 
   fastify.post('/pools', async (request, reply) => {
-    const createPoolSchema = z.object({ title: z.string() });
-    const { title } = createPoolSchema.parse(request.body);
+    const createPoolBody = z.object({ title: z.string() });
+    const { title } = createPoolBody.parse(request.body);
     const generate = new ShortUniqueId({ length: 6 });
     const code = String(generate()).toUpperCase();
     try {
@@ -118,10 +118,10 @@ export async function poolRoutes(fastify: FastifyInstance) {
     '/pools/join',
     { onRequest: [authenticate] },
     async (request, reply) => {
-      const joinPoolSchema = z.object({
+      const joinPoolBody = z.object({
         code: z.string(),
       });
-      const { code } = joinPoolSchema.parse(request.body);
+      const { code } = joinPoolBody.parse(request.body);
       const pool = await prisma.pool.findUnique({
         where: {
           code,
