@@ -135,7 +135,7 @@ export async function poolRoutes(fastify: FastifyInstance) {
         },
       });
       if (!pool) {
-        return reply.status(400).send({ message: 'Betting pool not found.' });
+        return reply.status(404).send({ message: 'Betting pool not found.' });
       }
       if (pool.participants.length > 0) {
         return reply
