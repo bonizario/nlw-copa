@@ -18,10 +18,7 @@ export function New() {
         id: '1',
         title: 'Informe um nome para o seu bolão!',
         placement: 'top',
-        bgColor: 'yellow.500',
-        _title: {
-          color: 'gray.900',
-        },
+        bgColor: 'red.500',
       });
     }
     try {

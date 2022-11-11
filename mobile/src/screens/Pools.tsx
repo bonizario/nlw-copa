@@ -68,7 +68,7 @@ export function Pools() {
           renderItem={({ item }) => <PoolCard data={item} />}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={() => <EmptyPoolList />}
-          _contentContainerStyle={{ pb: 10 }}
+          _contentContainerStyle={{ pb: '32' }}
           px="5"
         />
       )}
