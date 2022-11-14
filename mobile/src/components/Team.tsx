@@ -15,7 +15,6 @@ export function Team({ code, position, onChangeText }: Props) {
       {position === 'left' && (
         <CountryFlag isoCode={code} size={25} style={{ marginRight: 12 }} />
       )}
-
       <Input
         w="10"
         h="9"
@@ -24,7 +23,6 @@ export function Team({ code, position, onChangeText }: Props) {
         keyboardType="numeric"
         onChangeText={onChangeText}
       />
-
       {position === 'right' && (
         <CountryFlag isoCode={code} size={25} style={{ marginLeft: 12 }} />
       )}

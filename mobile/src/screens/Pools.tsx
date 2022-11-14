@@ -23,11 +23,14 @@ export function Pools() {
       setPools(response.data.pools);
     } catch (error) {
       console.error(error);
-      toast.show({
-        title: 'Não foi possível carregar os bolões',
-        placement: 'top',
-        bgColor: 'red.500',
-      });
+      if (!toast.isActive('1')) {
+        toast.show({
+          id: '1',
+          title: 'Não foi possível carregar os bolões',
+          placement: 'top',
+          bgColor: 'red.500',
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -65,7 +68,12 @@ export function Pools() {
         <FlatList
           data={pools}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <PoolCard data={item} />}
+          renderItem={({ item }) => (
+            <PoolCard
+              data={item}
+              onPress={() => navigate('details', { id: item.id })}
+            />
+          )}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={() => <EmptyPoolList />}
           _contentContainerStyle={{ pb: '32' }}

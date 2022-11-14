@@ -13,17 +13,19 @@ export function New() {
   const toast = useToast();
 
   async function handlePoolCreate() {
-    if (!title.trim() && !toast.isActive('1')) {
-      return toast.show({
-        id: '1',
-        title: 'Informe um nome para o seu bolão!',
-        placement: 'top',
-        bgColor: 'red.500',
-      });
+    if (!title.trim()) {
+      if (!toast.isActive('1'))
+        toast.show({
+          id: '1',
+          title: 'Informe um nome para o seu bolão!',
+          placement: 'top',
+          bgColor: 'red.500',
+        });
+      return;
     }
     try {
       setIsLoading(true);
-      await api.post('/pools', { title });
+      await api.post('/pools', { title: title.toUpperCase() });
       toast.show({
         title: 'Bolão criado com sucesso!',
         placement: 'top',
@@ -32,11 +34,14 @@ export function New() {
       setTitle('');
     } catch (error) {
       console.error(error);
-      toast.show({
-        title: 'Não foi possível criar o bolão',
-        placement: 'top',
-        bgColor: 'red.500',
-      });
+      if (!toast.isActive('1')) {
+        toast.show({
+          id: '1',
+          title: 'Não foi possível criar o bolão',
+          placement: 'top',
+          bgColor: 'red.500',
+        });
+      }
     } finally {
       setIsLoading(false);
     }

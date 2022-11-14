@@ -16,13 +16,15 @@ export function Find() {
   async function handleJoinPool() {
     try {
       setIsLoading(true);
-      if (!code.trim() && !toast.isActive('1')) {
-        return toast.show({
-          id: '1',
-          title: 'Informe o código do bolão!',
-          placement: 'top',
-          bgColor: 'red.500',
-        });
+      if (!code.trim()) {
+        if (!toast.isActive('1'))
+          toast.show({
+            id: '1',
+            title: 'Informe o código do bolão!',
+            placement: 'top',
+            bgColor: 'red.500',
+          });
+        return;
       }
       await api.post('/pools/join', { code });
       toast.show({
